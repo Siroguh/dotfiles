@@ -127,9 +127,6 @@ if [[ "$name" == "Eliminar sesión" ]]; then
             other_session=$(tmux list-sessions -F "#{session_name}" | grep -v "^${session_to_kill}$" | head -1)
             if [[ -n "$other_session" ]]; then
                 tmux switch-client -t "$other_session"
-            else
-                tmux new-session -ds "main"
-                tmux switch-client -t "main"
             fi
         fi
         
