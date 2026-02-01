@@ -1,0 +1,15 @@
+{
+  "plugin": [
+    "@franlol/opencode-md-table-formatter",
+    "opencode-anthropic-auth@latest",
+    "oh-my-opencode@latest"
+  ],
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "svelte5": {
+      "type": "remote",
+      "url": "https://mcp.svelte.dev/mcp",
+      "enabled": true
+    }
+  }
+}

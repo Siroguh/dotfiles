@@ -1,0 +1,55 @@
+shell-integration-features = ssh-terminfo
+# -----------------------------
+# Font & Scaling
+# -----------------------------
+font-family = "Iosevka"
+font-size = 14
+# -----------------------------
+# Theme & Colors
+# -----------------------------
+# Note: "default" is not a valid theme name
+# Using direct color specifications instead
+foreground = #ebdbb2
+background = #1d2021
+
+# -----------------------------
+# Cursor
+# -----------------------------
+cursor-color = #fabd2f
+cursor-style = block
+cursor-style-blink = true
+
+# -----------------------------
+# Window Padding
+# -----------------------------
+window-padding-x = 8
+window-padding-y = 8
+
+# -----------------------------
+# Scrollback
+# -----------------------------
+# Maximum value (effectively unlimited)
+scrollback-limit = 4294967295
+
+# -----------------------------
+# Mouse & Clipboard
+# -----------------------------
+selection-clear-on-typing = false
+selection-background = #264f78
+# Fixed: "menu" is not valid
+right-click-action = context-menu
+
+# -----------------------------
+# GTK-specific options
+# -----------------------------
+gtk-titlebar = true
+gtk-tabs-location = hidden
+gtk-titlebar-hide-when-maximized = true
+# Fixed: "hidden" is not valid, use "flat" or "raised"
+gtk-toolbar-style = flat
+
+
+# -----------------------------
+# Window
+# -----------------------------
+window-theme = dark
