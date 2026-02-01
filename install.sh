@@ -273,7 +273,7 @@ stow_dotfiles() {
     backup_dir="$HOME/.dotfiles_backup_$(date +%Y%m%d_%H%M%S)"
     
     # Check for existing files and backup
-    for package in zsh tmux git opencode ghostty ssh; do
+    for package in zsh tmux git opencode ghostty ssh gh; do
         if [ -d "$package" ]; then
             print_step "Stowing $package..."
             
