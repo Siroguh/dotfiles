@@ -1,0 +1,48 @@
+## Atuin config
+
+# Where to store the database
+db_path = "~/.local/share/atuin/history.db"
+
+# How often to sync (if using sync)
+sync_frequency = "1h"
+
+# Search mode: prefix, fulltext, fuzzy, skim
+search_mode = "fuzzy"
+
+# Filter mode: global, host, session, directory
+filter_mode = "global"
+filter_mode_shell_up_key_binding = "session"
+
+# Style: auto, full, compact
+style = "compact"
+
+# Inline height (number of lines)
+inline_height = 20
+
+# Show preview of command
+show_preview = true
+
+# Show help in UI
+show_help = false
+
+# Exit on selection (enter sends command)
+exit_mode = "return-query"
+
+# History format
+history_format = "{time} {command}"
+
+# Key bindings
+keymap_mode = "auto"
+enter_accept = true
+
+# Ignore commands
+history_filter = [
+    "^ls$",
+    "^cd$",
+    "^pwd$",
+    "^clear$",
+    "^exit$",
+]
+
+# Store cwd
+cwd_filter = []

@@ -62,7 +62,7 @@ install_oh_my_zsh() {
 }
 
 install_rust_tools() {
-    print_header "Installing Rust and tools"
+    print_header "Installing Rust and cargo tools"
     if ! command -v cargo &> /dev/null; then
         print_step "Installing Rust..."
         curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
@@ -72,9 +72,36 @@ install_rust_tools() {
         source "$HOME/.cargo/env" 2>/dev/null || true
     fi
     
-    print_step "Installing tmux-sessionizer (tms)..."
+    print_step "Installing tms, delta, bat, eza..."
     command -v tms &> /dev/null || cargo install tmux-sessionizer
+    command -v delta &> /dev/null || cargo install git-delta
+    command -v bat &> /dev/null || cargo install bat
+    command -v eza &> /dev/null || cargo install eza
     print_success "Rust tools installed"
+}
+
+install_atuin() {
+    print_header "Installing Atuin"
+    if command -v atuin &> /dev/null; then
+        print_success "Atuin already installed"
+        return
+    fi
+    curl -fsSL https://setup.atuin.sh | bash
+    print_success "Atuin installed"
+}
+
+install_lazygit() {
+    print_header "Installing Lazygit"
+    if command -v lazygit &> /dev/null; then
+        print_success "Lazygit already installed"
+        return
+    fi
+    LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+    curl -Lo /tmp/lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+    tar xf /tmp/lazygit.tar.gz -C /tmp
+    sudo install /tmp/lazygit /usr/local/bin
+    rm /tmp/lazygit.tar.gz /tmp/lazygit
+    print_success "Lazygit installed"
 }
 
 install_gitmux() {
@@ -173,7 +200,7 @@ install_nerd_font() {
 stow_dotfiles() {
     print_header "Linking dotfiles with GNU Stow"
     cd "$DOTFILES_DIR"
-    for package in zsh tmux git opencode ghostty ssh gh; do
+    for package in zsh tmux git opencode ghostty ssh gh lazygit atuin bat; do
         if [ -d "$package" ]; then
             print_step "Stowing $package..."
             stow -v --target="$HOME" --adopt "$package" 2>/dev/null || true
@@ -221,7 +248,7 @@ change_shell() {
 
 main() {
     print_header "Hugo's Dotfiles Installer"
-    echo "This will install: Zsh, Oh My Zsh, Powerlevel10k, Tmux, TPM, tms, Git, gitmux, NVM, Bun, Turso, opencode, Iosevka Nerd Font"
+    echo "This will install: Zsh, Oh My Zsh, Powerlevel10k, Tmux, TPM, tms, Git, gitmux, delta, lazygit, atuin, eza, bat, NVM, Bun, Turso, opencode, Iosevka Nerd Font"
     echo ""
     
     if [ "$UNATTENDED" = false ]; then
@@ -234,6 +261,8 @@ main() {
     install_gh
     install_oh_my_zsh
     install_rust_tools
+    install_atuin
+    install_lazygit
     install_gitmux
     install_tpm
     install_nvm

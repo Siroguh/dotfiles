@@ -136,5 +136,23 @@ export PATH="$PATH:/home/hugo/.turso"
 # tmux always attaches to main
 alias tmux="tmux new-session -As main"
 
+# eza (better ls)
+if command -v eza &> /dev/null; then
+  alias ls="eza --icons"
+  alias ll="eza -l --icons --git"
+  alias la="eza -la --icons --git"
+  alias lt="eza -T --icons --level=2"
+fi
+
+# bat (better cat)
+if command -v bat &> /dev/null; then
+  alias cat="bat --paging=never"
+  alias catp="bat"
+fi
+
+# Atuin (better history)
+if command -v atuin &> /dev/null; then
+  eval "$(atuin init zsh)"
+fi
 
 export PATH="$HOME/.local/bin:$PATH"

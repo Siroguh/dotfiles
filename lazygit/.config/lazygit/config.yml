@@ -1,0 +1,77 @@
+# ~/.config/lazygit/config.yml
+# Full LazyGit configuration file
+
+gui:
+  theme:
+    activeBorderColor:
+      - green
+      - bold
+    inactiveBorderColor:
+      - default
+    optionsTextColor:
+      - blue
+    selectedLineBgColor:
+      - reverse
+    selectedRangeBgColor:
+      - reverse
+  showIcons: true
+  showFileTree: true
+  expandFocusedSidePanel: true
+  border: 'rounded'
+  mouseEvents: true
+  nerdFontsVersion: "3"
+  commitLength:
+    show: true
+git:
+  pagers:
+    - colorArg: always
+      pager: delta --dark --paging=never
+  autoFetch: true
+  autoRefresh: true
+  fetchAll: false
+  pull:
+    mode: rebase
+  merge:
+    autoCommit: false
+  skipHookPrefix: WIP
+  log:
+    order: topo-order
+  branchLogCmd: git log --oneline --decorate --graph
+update:
+  method: prompt
+  days: 14
+reporting: "off"
+startuppopupversion: 1
+confirmOnQuit: false
+quitOnTopLevelReturn: false
+os:
+  editPreset: "nvim"
+refresher:
+  refreshInterval: 10
+  fetchInterval: 60
+keybinding:
+  universal:
+    quit: "q"
+    return: "<esc>"
+    togglePanel: "<tab>"
+    prevItem: "k"
+    nextItem: "j"
+    prevBlock: "h"
+    nextBlock: "l"
+    scrollUpMain: "<c-u>"
+    scrollDownMain: "<c-d>"
+customCommands:
+  - key: "<c-l>"
+    context: "files"
+    command: "lumen draft | tee >(pbcopy)"
+    loadingText: "Generating message..."
+    output: popup
+  - key: "<c-k>"
+    context: "files"
+    command: "lumen draft -c {{.Form.Context | quote}} | tee >(pbcopy)"
+    loadingText: "Generating message..."
+    prompts:
+      - type: "input"
+        title: "Context"
+        key: "Context"
+    output: popup

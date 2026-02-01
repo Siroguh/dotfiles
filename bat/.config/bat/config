@@ -1,0 +1,18 @@
+# Bat configuration
+
+# Theme
+--theme="gruvbox-dark"
+
+# Show line numbers
+--style="numbers,changes,header"
+
+# Use italic text
+--italic-text=always
+
+# Pager
+--pager="less -FR"
+
+# Map extensions to languages
+--map-syntax "*.conf:INI"
+--map-syntax ".gitconfig:INI"
+--map-syntax "*.env:Dotenv"
