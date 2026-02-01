@@ -72,12 +72,24 @@ install_rust_tools() {
         source "$HOME/.cargo/env" 2>/dev/null || true
     fi
     
-    print_step "Installing tms, delta, bat, eza..."
+    print_step "Installing tms, delta, bat, eza, zoxide, yazi..."
     command -v tms &> /dev/null || cargo install tmux-sessionizer
     command -v delta &> /dev/null || cargo install git-delta
     command -v bat &> /dev/null || cargo install bat
     command -v eza &> /dev/null || cargo install eza
+    command -v zoxide &> /dev/null || cargo install zoxide
+    command -v yazi &> /dev/null || cargo install --locked yazi-fm yazi-cli
     print_success "Rust tools installed"
+}
+
+install_btop() {
+    print_header "Installing btop"
+    if command -v btop &> /dev/null; then
+        print_success "btop already installed"
+        return
+    fi
+    sudo apt install -y btop || sudo snap install btop
+    print_success "btop installed"
 }
 
 install_atuin() {
@@ -200,7 +212,7 @@ install_nerd_font() {
 stow_dotfiles() {
     print_header "Linking dotfiles with GNU Stow"
     cd "$DOTFILES_DIR"
-    for package in zsh tmux git opencode ghostty ssh gh lazygit atuin bat; do
+    for package in zsh tmux git opencode ghostty ssh gh lazygit atuin bat yazi; do
         if [ -d "$package" ]; then
             print_step "Stowing $package..."
             stow -v --target="$HOME" --adopt "$package" 2>/dev/null || true
@@ -248,7 +260,7 @@ change_shell() {
 
 main() {
     print_header "Hugo's Dotfiles Installer"
-    echo "This will install: Zsh, Oh My Zsh, Powerlevel10k, Tmux, TPM, tms, Git, gitmux, delta, lazygit, atuin, eza, bat, NVM, Bun, Turso, opencode, Iosevka Nerd Font"
+    echo "This will install: Zsh, Oh My Zsh, Powerlevel10k, Tmux, TPM, tms, Git, gitmux, delta, lazygit, atuin, eza, bat, zoxide, yazi, btop, NVM, Bun, Turso, opencode, Iosevka Nerd Font"
     echo ""
     
     if [ "$UNATTENDED" = false ]; then
@@ -261,6 +273,7 @@ main() {
     install_gh
     install_oh_my_zsh
     install_rust_tools
+    install_btop
     install_atuin
     install_lazygit
     install_gitmux

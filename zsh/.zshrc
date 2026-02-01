@@ -82,7 +82,6 @@ plugins=(
   docker
   zsh-autosuggestions
   zsh-syntax-highlighting
-  z
   sudo
   colored-man-pages
   command-not-found
@@ -154,5 +153,20 @@ fi
 if command -v atuin &> /dev/null; then
   eval "$(atuin init zsh)"
 fi
+
+# Zoxide (better cd)
+if command -v zoxide &> /dev/null; then
+  eval "$(zoxide init zsh)"
+fi
+
+# Yazi (file manager) - y to cd into dir on exit
+function y() {
+  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+  yazi "$@" --cwd-file="$tmp"
+  if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+    builtin cd -- "$cwd"
+  fi
+  rm -f -- "$tmp"
+}
 
 export PATH="$HOME/.local/bin:$PATH"

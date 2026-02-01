@@ -1,0 +1,54 @@
+[manager]
+keymap = [
+  { on = ["<Esc>"], run = "escape", desc = "Exit visual/select mode" },
+  { on = ["q"], run = "quit", desc = "Quit" },
+  { on = ["<C-q>"], run = "quit --no-cwd-file", desc = "Quit without cwd" },
+
+  # Navigation
+  { on = ["k"], run = "arrow -1", desc = "Move up" },
+  { on = ["j"], run = "arrow 1", desc = "Move down" },
+  { on = ["h"], run = "leave", desc = "Go parent dir" },
+  { on = ["l"], run = "enter", desc = "Enter dir" },
+  { on = ["<C-u>"], run = "arrow -50%", desc = "Page up" },
+  { on = ["<C-d>"], run = "arrow 50%", desc = "Page down" },
+  { on = ["g", "g"], run = "arrow -99999999", desc = "Top" },
+  { on = ["G"], run = "arrow 99999999", desc = "Bottom" },
+
+  # Selection
+  { on = ["<Space>"], run = ["select --state=none", "arrow 1"], desc = "Toggle select" },
+  { on = ["v"], run = "visual_mode", desc = "Visual mode" },
+  { on = ["V"], run = "visual_mode --unset", desc = "Visual mode (unset)" },
+
+  # Operations
+  { on = ["o"], run = "open", desc = "Open file" },
+  { on = ["O"], run = "open --interactive", desc = "Open with..." },
+  { on = ["<Enter>"], run = "open", desc = "Open file" },
+  { on = ["y"], run = "yank", desc = "Yank (copy)" },
+  { on = ["x"], run = "yank --cut", desc = "Cut" },
+  { on = ["p"], run = "paste", desc = "Paste" },
+  { on = ["d"], run = "remove", desc = "Trash" },
+  { on = ["D"], run = "remove --permanently", desc = "Delete" },
+  { on = ["a"], run = "create", desc = "Create file/dir" },
+  { on = ["r"], run = "rename --cursor=before_ext", desc = "Rename" },
+  { on = ["."], run = "hidden toggle", desc = "Toggle hidden" },
+
+  # Search/Find
+  { on = ["/"], run = "find --smart", desc = "Find" },
+  { on = ["n"], run = "find_arrow", desc = "Find next" },
+  { on = ["N"], run = "find_arrow --previous", desc = "Find prev" },
+  { on = ["s"], run = "search fd", desc = "Search (fd)" },
+  { on = ["S"], run = "search rg", desc = "Search (rg)" },
+  
+  # Tabs
+  { on = ["t"], run = "tab_create --current", desc = "New tab" },
+  { on = ["1"], run = "tab_switch 0", desc = "Tab 1" },
+  { on = ["2"], run = "tab_switch 1", desc = "Tab 2" },
+  { on = ["["], run = "tab_switch -1 --relative", desc = "Prev tab" },
+  { on = ["]"], run = "tab_switch 1 --relative", desc = "Next tab" },
+
+  # Goto
+  { on = ["g", "h"], run = "cd ~", desc = "Home" },
+  { on = ["g", "d"], run = "cd ~/Dev", desc = "Dev" },
+  { on = ["g", "D"], run = "cd ~/Downloads", desc = "Downloads" },
+  { on = ["g", "c"], run = "cd ~/.config", desc = "Config" },
+]
