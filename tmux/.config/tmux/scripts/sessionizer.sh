@@ -25,7 +25,7 @@ paths["Config"]="$HOME/.config"
 fzf_colors="--color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8"
 fzf_colors+=" --color=fg:#cdd6f4,header:#94e2d5,info:#cba6f7,pointer:#f5e0dc"
 fzf_colors+=" --color=marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
-fzf_colors+=" --color=selected-bg:#45475a,border:#89b4fa,label:#94e2d5"
+fzf_colors+=" --color=border:#89b4fa"
 
 # Build list with icons
 list=""
@@ -53,9 +53,7 @@ selected=$(echo -e "$list" | fzf \
     --no-info \
     --layout reverse \
     --border rounded \
-    --border-label "  Tmux Sessions " \
-    --border-label-pos 3 \
-    --no-scrollbar \
+    --header "  Tmux Sessions" \
     --prompt "   " \
     --pointer "▶" \
     --margin 0 \
@@ -112,9 +110,7 @@ if [[ "$name" == "Eliminar sesión" ]]; then
             --no-sort \
             --layout reverse \
             --border rounded \
-            --border-label "  Eliminar Sesión (ESC para salir) " \
-            --border-label-pos 3 \
-            --no-scrollbar \
+            --header "  Eliminar Sesión (ESC para salir)" \
             --prompt "   " \
             --pointer "▶" \
             --margin 0 \
@@ -156,9 +152,7 @@ if [[ "$name" == "Eliminar ventana" ]]; then
             --no-sort \
             --layout reverse \
             --border rounded \
-            --border-label "  Eliminar Ventana (ESC para salir) " \
-            --border-label-pos 3 \
-            --no-scrollbar \
+            --header "  Eliminar Ventana (ESC para salir)" \
             --prompt "   " \
             --pointer "▶" \
             --margin 0 \
