@@ -5,7 +5,7 @@ My personal configuration files for Ubuntu/Debian systems.
 ## Quick Install
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/dotfiles.git ~/.dotfiles
+git clone https://github.com/Siroguh/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 ./install.sh
 ```
@@ -20,6 +20,7 @@ cd ~/.dotfiles
 | **opencode** | AI coding assistant configuration |
 | **ghostty** | Terminal emulator config |
 | **ssh** | SSH client configuration |
+| **gh** | GitHub CLI configuration |
 
 ## Installed Tools
 
@@ -89,8 +90,10 @@ dotfiles/
 │       └── oh-my-opencode.json
 ├── ghostty/
 │   └── .config/ghostty/config
-└── ssh/
-    └── .ssh/config
+├── ssh/
+│   └── .ssh/config
+└── gh/
+    └── .config/gh/config.yml
 ```
 
 ## Minimal Install
