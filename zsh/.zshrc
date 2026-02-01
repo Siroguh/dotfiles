@@ -132,9 +132,6 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # Turso
 export PATH="$PATH:/home/hugo/.turso"
 
-# tmux always attaches to main
-alias tmux="tmux new-session -As main"
-
 # eza (better ls)
 if command -v eza &> /dev/null; then
   alias ls="eza --icons"
